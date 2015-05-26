@@ -42,3 +42,7 @@ tramp
 *.FASL
 *.fasl
 *.lisp-temp
+
+_site/
+.sass-cache/
+.jekyll-metadata
