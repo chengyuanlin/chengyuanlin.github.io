@@ -1,6 +1,5 @@
----
-defaults:
-  -
-    values:
-      author: "Mr. Lin"
----
+title: Haku
+email: sxhash@gmail.com
+github_username: chengyuanlin
+timezone: Asia/Shanghai
+encoding: utf-8
