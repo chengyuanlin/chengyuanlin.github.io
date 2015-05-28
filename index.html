@@ -1,20 +1,29 @@
 ---
 layout: default
+title: Learn && Play
 ---
 
 <title>{{ site.title }}</title>
-
-<h1>Welcome to haku's blog =^_^=</h1>
-
 <hr />
 
-<audio controls="controls" loop="loop">
-  <source src="/downloads/one.mp3" type="audio/mp3" />
-  <source src="/downloads/1.mp3" type="audio/mp3" />
-Your browser does not support this audio format.
-</audio>
+<h2>Welcome to haku's blog =^_^=</h2>
 
 <p>I would be happy to share my life with you.</p>
+<p>You will find some new from here each time you visit.</p>
+<br />
+<hr />
+
+<h2>Music</h2>
+<p>I would upload some of my favorite songs here.</p>
+<p>Just enjoy it!</p>
+<audio controls="controls" loop="loop">
+  <source src="/downloads/music/one.mp3" type="audio/mp3" />
+Your browser does not support this audio format.
+</audio>
+<hr />
+
+<h2>My Daily Life</h2>
+
 
 <ul>
   {% for post in site.posts %}
@@ -24,3 +33,5 @@ Your browser does not support this audio format.
   </li>
   {% endfor %}
 </ul>
+
+<hr />
