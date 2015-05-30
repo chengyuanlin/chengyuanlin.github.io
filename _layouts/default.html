@@ -1,16 +1,26 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta charset="UTF-8">
+    <title>{{ site.title }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.0.0/css/amazeui.min.css">
+    <link rel="stylesheet" href="http://7tsyvm.com1.z0.glb.clouddn.com/doby/free.css">
+    <script type="text/javascript" src="http://a.static.amazeui.org/assets/2.x/js/jquery.min.js"></script>
+
     <h1>{{ page.title }}</h1>
     <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
   </head>
-  <body background="/downloads/img/3.gif">
-
+  
+  <body >    
     <div class="site">
-      
+      <div id="hitokoto"><script>hitokoto()</script></div>
+      <hr />
       {{ content }}
-
       <div class="footer">
 	<div class="contact">
 	  <hr />
@@ -28,6 +38,7 @@
 	</div>
       </div>
     </div>
+    <img src="downloads/img/bk11.jpg" id="bkImg" onmousedown="return false">
     
   </body>
 </html>
