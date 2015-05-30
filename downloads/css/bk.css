@@ -1,0 +1,24 @@
+body {
+	background: #f9f9f9 !important;
+	padding-top: 50px;
+	text-align: center
+}
+#content{
+	background: #f9f9f9 !important;
+}
+#bkImg{
+	border: 0;
+	position:fixed;
+	right:0;
+	bottom:0;
+	filter:alpha(opacity=13);
+	-moz-opacity:0.13;
+	-khtml-opacity:0.13;
+	opacity:0.13;
+	z-index:-999;
+	-khtml-user-select:none;
+	-ms-user-select:none;
+	-webkit-user-select:none;
+	user-select:none;
+	-moz-user-select:none;
+}
