@@ -14,9 +14,18 @@
 
     <h1>Learn && Play</h1>
     <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
+
+    
+    <script language="javascript">
+      function show()
+      {
+      var name = parseInt(Math.random()*11 + 1);
+      document.getElementById("bkImg").src="downloads/img/bk"+name+".jpg";
+      }
+    </script>
   </head>
   
-  <body >    
+  <body onload="show()">    
     <div class="site">
       <div id="hitokoto"><script>hitokoto()</script></div>
       <hr />
@@ -65,7 +74,9 @@ Your browser does not support this audio format.
 	</div>
       </div>
     </div>
-    <img src="downloads/img/bk11.jpg" id="bkImg" onmousedown="return false">
+
+    
+    <img id="bkImg" onmousedown="return false">
     
   </body>
 </html>
