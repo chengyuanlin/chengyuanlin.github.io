@@ -1,41 +1,88 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset = "UTF-8">
     <title>Haku</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <link rel="stylesheet" href="/downloads/css/amazeui.css">
-    <link rel="stylesheet" href="/downloads/css/bk.css">
-    <script type="text/javascript" src="/downloads/js/jquery.js"></script>
-
     <h1>Learn && Play</h1>
-    <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
 
     
-    <script language="javascript">
-      function show()
-      {
-      var name = parseInt(Math.random()*11 + 1);
-      document.getElementById("bkImg").src="/downloads/img/bk"+name+".jpg";
-      }
+
+    <script src="/downloads/audiojs/audio.js"></script>
+    <script src="/downloads/js/jquery.js"></script>
+
+    
+    
+    <script>
+      $(function() { 
+        // Setup the player to autoplay the next track
+        var a = audiojs.createAll({
+          trackEnded: function() {
+            var next = $('ol li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.addClass('playing').siblings().removeClass('playing');
+            audio.load($('a', next).attr('data-src'));
+            audio.play();
+          }
+        });
+        
+        // Load in the first track
+        var audio = a[0];
+            first = $('ol a').attr('data-src');
+        $('ol li').first().addClass('playing');
+        audio.load(first);
+
+        // Load in a track on click
+        $('ol li').click(function(e) {
+          e.preventDefault();
+          $(this).addClass('playing').siblings().removeClass('playing');
+          audio.load($('a', this).attr('data-src'));
+          audio.play();
+        });
+        // Keyboard shortcuts
+        $(document).keydown(function(e) {
+          var unicode = e.charCode ? e.charCode : e.keyCode;
+             // right arrow
+          if (unicode == 39) {
+            var next = $('li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.click();
+            // back arrow
+          } else if (unicode == 37) {
+            var prev = $('li.playing').prev();
+            if (!prev.length) prev = $('ol li').last();
+            prev.click();
+            // spacebar
+          } else if (unicode == 32) {
+            audio.playPause();
+          }
+        })
+      });
     </script>
-  </head>
+    
+   </head>
   
   <body onload="show()">    
     <div class="site">
       <div id="hitokoto"><script>hitokoto()</script></div>
       <hr />
-      <h2>Music</h2>
-<p>I would upload some of my favorite songs here.</p>
-<p>Just enjoy it!</p>
-<audio controls="controls" loop="loop">
-  <source src="/downloads/music/1.mp3" type="audio/mp3" />
-Your browser does not support this audio format.
-</audio>
+      <h2>Music Time</h2>
+<p>这一周是孙燕姿专场</p>
+
+<div id="wrapper">
+  <audio preload></audio>
+  <ol>
+    <li><a href="#" data-src="/downloads/music/1.mp3">Hey Jude</a></li>
+    <li><a href="#" data-src="/downloads/music/2.mp3">Venus</a></li>
+    <li><a href="#" data-src="/downloads/music/3.mp3">咕叽咕叽</a></li>
+    <li><a href="#" data-src="/downloads/music/4.mp3">天黑黑</a></li>
+    <li><a href="#" data-src="/downloads/music/5.mp3">害怕</a></li>
+    <li><a href="#" data-src="/downloads/music/6.mp3">开始懂了</a></li>
+    <li><a href="#" data-src="/downloads/music/7.mp3">当冬夜渐暖</a></li>
+    <li><a href="#" data-src="/downloads/music/8.mp3">眼泪成诗</a></li>
+    <li><a href="#" data-src="/downloads/music/9.mp3">遇见</a></li>
+  </ol>
+</div>
+
 <hr />
 
 <h2>My Daily Life</h2>
@@ -44,18 +91,8 @@ Your browser does not support this audio format.
 <ul>
   
   <li>
-    31 May 2015
-    <a href="/2015/05/31/r.html">b</a>
-  </li>
-  
-  <li>
-    29 May 2015
-    <a href="/2015/05/29/book.html">book</a>
-  </li>
-  
-  <li>
-    28 May 2015
-    <a href="/2015/05/28/hello.html">Hello</a>
+    08 Jun 2015
+    <a href="/2015/06/08/%E5%BC%80%E5%A7%8B%E6%9B%B4%E6%96%B0.html">开始更新</a>
   </li>
   
 </ul>
@@ -79,9 +116,6 @@ Your browser does not support this audio format.
 	</div>
       </div>
     </div>
-
-    
-    <img id="bkImg" onmousedown="return false">
     
   </body>
 </html>

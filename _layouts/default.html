@@ -1,29 +1,65 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset = "UTF-8">
     <title>{{ site.title }}</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <link rel="stylesheet" href="/downloads/css/amazeui.css">
-    <link rel="stylesheet" href="/downloads/css/bk.css">
-    <script type="text/javascript" src="/downloads/js/jquery.js"></script>
-
     <h1>{{ page.title }}</h1>
-    <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
 
     
-    <script language="javascript">
-      function show()
-      {
-      var name = parseInt(Math.random()*11 + 1);
-      document.getElementById("bkImg").src="/downloads/img/bk"+name+".jpg";
-      }
+
+    <script src="/downloads/audiojs/audio.js"></script>
+    <script src="/downloads/js/jquery.js"></script>
+
+    
+    
+    <script>
+      $(function() { 
+        // Setup the player to autoplay the next track
+        var a = audiojs.createAll({
+          trackEnded: function() {
+            var next = $('ol li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.addClass('playing').siblings().removeClass('playing');
+            audio.load($('a', next).attr('data-src'));
+            audio.play();
+          }
+        });
+        
+        // Load in the first track
+        var audio = a[0];
+            first = $('ol a').attr('data-src');
+        $('ol li').first().addClass('playing');
+        audio.load(first);
+
+        // Load in a track on click
+        $('ol li').click(function(e) {
+          e.preventDefault();
+          $(this).addClass('playing').siblings().removeClass('playing');
+          audio.load($('a', this).attr('data-src'));
+          audio.play();
+        });
+        // Keyboard shortcuts
+        $(document).keydown(function(e) {
+          var unicode = e.charCode ? e.charCode : e.keyCode;
+             // right arrow
+          if (unicode == 39) {
+            var next = $('li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.click();
+            // back arrow
+          } else if (unicode == 37) {
+            var prev = $('li.playing').prev();
+            if (!prev.length) prev = $('ol li').last();
+            prev.click();
+            // spacebar
+          } else if (unicode == 32) {
+            audio.playPause();
+          }
+        })
+      });
     </script>
-  </head>
+    
+   </head>
   
   <body onload="show()">    
     <div class="site">
@@ -47,9 +83,6 @@
 	</div>
       </div>
     </div>
-
-    
-    <img id="bkImg" onmousedown="return false">
     
   </body>
 </html>
